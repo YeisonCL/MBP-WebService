@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Web.Http;
+
+namespace MBP_WebService.Controllers
+{
+    public class DefaultController : ApiController
+    {
+        //GET /
+        //Pagina principal
+        public HttpResponseMessage GetPrincipalPage()
+        {
+            try
+            {
+                HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                _request.Content = new StringContent("¡Bienvenido a MyBattlePong!", Encoding.UTF8, "text/plain");
+                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                return _request;
+            }
+            catch
+            {
+                HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.Conflict);
+                _request.Content = new StringContent("¡Se ha producido un error procesando su petición!", Encoding.UTF8, "text/plain");
+                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                return _request;
+            }
+        }
+    }
+}

@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MBP-Cross">
+      <HintPath>..\..\MBP-Cross\MBP-Cross\bin\Debug\MBP-Cross.dll</HintPath>
+    </Reference>
+    <Reference Include="MBP-Logic">
+      <HintPath>..\..\MBP-Logic\MBP-Logic\bin\Debug\MBP-Logic.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -108,9 +114,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AuthenticateLoginController.cs" />
+    <Compile Include="Controllers\AuthenticateLogoutController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\OnlineGameController.cs" />
+    <Compile Include="Models\Errors\DefaultErrors.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Generals\ExtractorValues.cs" />
+    <Compile Include="Models\JsonSerialize\JSONSerialize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -127,10 +140,7 @@
     </Content>
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

@@ -10,9 +10,27 @@ namespace MBP_WebService
         public static void Register(HttpConfiguration config)
         {
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                name: "DefaultPage",
+                routeTemplate: "",
+                defaults: new { controller = "default"}
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "AuthenticationLogin",
+                routeTemplate: "authenticate/login",
+                defaults: new { controller = "authenticatelogin" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "AuthenticationLogout",
+                routeTemplate: "authenticate/logout",
+                defaults: new { controller = "authenticatelogout" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "OnlineGame",
+                routeTemplate: "onlinegame",
+                defaults: new { controller = "OnlineGame" }
             );
         }
     }
