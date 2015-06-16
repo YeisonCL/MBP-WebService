@@ -18,19 +18,55 @@ namespace MBP_WebService
             config.Routes.MapHttpRoute(
                 name: "AuthenticationLogin",
                 routeTemplate: "authenticate/login",
-                defaults: new { controller = "authenticatelogin" }
+                defaults: new { controller = "authenticate"}
             );
 
             config.Routes.MapHttpRoute(
                 name: "AuthenticationLogout",
                 routeTemplate: "authenticate/logout",
-                defaults: new { controller = "authenticatelogout" }
+                defaults: new { controller = "authenticate" }
             );
 
             config.Routes.MapHttpRoute(
-                name: "OnlineGame",
-                routeTemplate: "onlinegame",
-                defaults: new { controller = "OnlineGame" }
+                name: "GetShipCatalog",
+                routeTemplate: "shipcatalog",
+                defaults: new { controller = "shipcatalog" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "NewOnlineGame",
+                routeTemplate: "onlinegame/newonlinegame",
+                defaults: new { controller = "onlinegame", action = "postnewonlinegame" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "AlreadyStartedOnlineGame",
+                routeTemplate: "onlinegame/alreadystarted",
+                defaults: new { controller = "onlinegame", action = "getalreadystarted"}
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "OnlineWaitingGames",
+                routeTemplate: "onlinegame/waitinggames",
+                defaults: new { controller = "onlinegame", action = "getwaitinggames" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "SelectOnlineGame",
+                routeTemplate: "onlinegame/selectonlinegame",
+                defaults: new { controller = "onlinegame", action = "getselectonlinegame" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "JoinOnlineGame",
+                routeTemplate: "onlinegame/joinonlinegame",
+                defaults: new { controller = "onlinegame", action = "postjoinonlinegame" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "GameFeeds",
+                routeTemplate: "onlinegame/gamefeeds",
+                defaults: new { controller = "onlinegame", action = "getgamefeeds" }
             );
         }
     }

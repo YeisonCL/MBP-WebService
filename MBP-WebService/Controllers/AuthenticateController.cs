@@ -16,8 +16,30 @@ using System.Web.Security;
 
 namespace MBP_WebService.Controllers
 {
-    public class AuthenticateLoginController : ApiController
+    public class AuthenticateController : ApiController
     {
+
+        //GET /authenticate/logout
+        //Hace logout a un cliente
+        public HttpResponseMessage GetAuthenticateLogout()
+        {
+            try
+            {
+                FormsAuthentication.SignOut();
+                HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.notError()), Encoding.UTF8, "text/plain");
+                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                return _request;
+            }
+            catch
+            {
+                HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
+                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                return _request;
+            }
+        }
+
         //POST /authenticate/login
         //Autentica un nuevo jugador dandole una cookie
         public HttpResponseMessage PostAuthenticateLogin()
