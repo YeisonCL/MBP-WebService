@@ -68,6 +68,18 @@ namespace MBP_WebService
                 routeTemplate: "onlinegame/gamefeeds",
                 defaults: new { controller = "onlinegame", action = "getgamefeeds" }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "ChatNewMessage",
+                routeTemplate: "chat/newmessage",
+                defaults: new { controller = "chat", action = "postnewmessage" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "MakeShot",
+                routeTemplate: "shot/makeshot",
+                defaults: new { controller = "shot", action = "postmakeshot" }
+            );
         }
     }
 }

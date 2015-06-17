@@ -205,7 +205,7 @@ namespace MBP_WebService.Controllers
                 {
                     string datosPost = Request.Content.ReadAsStringAsync().Result;
                     JoinGameDTO joinGameData = JSONSerialize.deserealizeJson<JoinGameDTO>(datosPost);
-                    joinGameData.setOpponentNickname(ExtractorValues.getNickname(authCookie.Name));
+                    joinGameData.setCreatorNickname(ExtractorValues.getNickname(authCookie.Name));
                     ResponseObject<IList<ShipDTO>> joinOnlineGameData = onlineGameFacade.joinOnlineGame(joinGameData);
 
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
