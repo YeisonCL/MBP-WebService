@@ -154,6 +154,40 @@ namespace MBP_WebService.Controllers
             }
         }
 
+        //GET /onlinegame/finalegamefeeds
+        //Obtiene los finale feeds del juego
+        [Authorize]
+        public HttpResponseMessage GetFinaleGameFeeds()
+        {
+            try
+            {
+                IOnlineGameFacade onlineGameFacade = new OnlineGameManager();
+                FormsAuthenticationTicket authCookie = FormsAuthentication.Decrypt(Request.Headers.GetCookies(".ASPXAUTH").First().Cookies.First().Value);
+                if (ExtractorValues.getRoleType(authCookie.Name) == 0)
+                {
+                    ResponseObject<FinaleFeedsDTO> finaleGameFeed = onlineGameFacade.getFinaleFeeds(ExtractorValues.getNickname(authCookie.Name));
+                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(finaleGameFeed), Encoding.UTF8, "text/plain");
+                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    return _request;
+                }
+                else
+                {
+                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
+                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    return _request;
+                }
+            }
+            catch
+            {
+                HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
+                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                return _request;
+            }
+        }
+
         //POST /onlinegame/joinonlinegame
         //Crea un nuevo juego online
         [Authorize]

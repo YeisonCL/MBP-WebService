@@ -114,9 +114,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AbilitiesController.cs" />
     <Compile Include="Controllers\AuthenticateController.cs" />
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\GameUserController.cs" />
     <Compile Include="Controllers\OnlineGameController.cs" />
     <Compile Include="Controllers\ShipCatalogController.cs" />
     <Compile Include="Controllers\ShotController.cs" />

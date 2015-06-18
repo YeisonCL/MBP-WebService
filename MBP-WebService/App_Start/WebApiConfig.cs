@@ -70,6 +70,12 @@ namespace MBP_WebService
             );
 
             config.Routes.MapHttpRoute(
+                name: "FinaleGameFeeds",
+                routeTemplate: "onlinegame/finalegamefeeds",
+                defaults: new { controller = "onlinegame", action = "getfinalegamefeeds" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "ChatNewMessage",
                 routeTemplate: "chat/newmessage",
                 defaults: new { controller = "chat", action = "postnewmessage" }
@@ -79,6 +85,84 @@ namespace MBP_WebService
                 name: "MakeShot",
                 routeTemplate: "shot/makeshot",
                 defaults: new { controller = "shot", action = "postmakeshot" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "ExtraShotAbility",
+                routeTemplate: "ability/extrashot",
+                defaults: new { controller = "abilities", action = "postextrashotactivate" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "ThreeExtraShotAbility",
+                routeTemplate: "ability/threeextrashot",
+                defaults: new { controller = "abilities", action = "postthreeextrashotactivate" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "ExtraTurnShotAbility",
+                routeTemplate: "ability/extraturnshot",
+                defaults: new { controller = "abilities", action = "postextraturnshotactivate" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "AntiShieldAbility",
+                routeTemplate: "ability/antishield",
+                defaults: new { controller = "abilities", action = "postantishieldactivate" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "BombAbility",
+                routeTemplate: "ability/bomb",
+                defaults: new { controller = "abilities", action = "postbombactivate" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "LifeGuardAbility",
+                routeTemplate: "ability/lifeguard",
+                defaults: new { controller = "abilities", action = "postlifeguardactivate" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "OnePlusVerticalAbility",
+                routeTemplate: "ability/oneplusvertical",
+                defaults: new { controller = "abilities", action = "postoneplusverticalactivate" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "OnePlusHorizontalAbility",
+                routeTemplate: "ability/oneplushorizontal",
+                defaults: new { controller = "abilities", action = "postoneplushorizontalactivate" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "SpyAbility",
+                routeTemplate: "ability/spy",
+                defaults: new { controller = "abilities", action = "postspyactivate" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "ShieldAbility",
+                routeTemplate: "ability/shield",
+                defaults: new { controller = "abilities", action = "postshieldactivate" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "GameAbilities",
+                routeTemplate: "ability/game",
+                defaults: new { controller = "abilities", action = "getgameabilities" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "GameUserStatistics",
+                routeTemplate: "gameuser/statistics",
+                defaults: new { controller = "gameuser", action = "getstatisticsuser" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "GameFullUserStatistics",
+                routeTemplate: "gameuser/fullstatistics",
+                defaults: new { controller = "gameuser", action = "getfullstatisticsuser" }
             );
         }
     }
