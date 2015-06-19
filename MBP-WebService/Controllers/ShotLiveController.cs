@@ -20,7 +20,6 @@ namespace MBP_WebService.Controllers
     {
         //POST livegame/shot/makeshot
         //Realizar un disparo
-        [Authorize]
         public HttpResponseMessage PostMakeShot()
         {
             try

@@ -25,10 +25,10 @@ namespace MBP_WebService.Controllers
                 _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
-            catch(Exception ex)
+            catch
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.Conflict);
-                _request.Content = new StringContent(ex.Message, Encoding.UTF8, "text/plain");
+                _request.Content = new StringContent("¡Se ha producido un error procesando su petición!", Encoding.UTF8, "text/plain");
                 _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }

@@ -102,7 +102,7 @@ namespace MBP_WebService.Controllers
             {
                 ILiveGameFacade liveGameFacade = new LiveGameManager();
                 FormsAuthenticationTicket authCookie = FormsAuthentication.Decrypt(Request.Headers.GetCookies(".ASPXAUTH").First().Cookies.First().Value);
-                if (ExtractorValues.getRoleType(authCookie.Name) == 0)
+                if (ExtractorValues.getRoleType(authCookie.Name) == 1)
                 {
                     ResponseObject<FinaleFeedsDTO> finaleGameFeed = liveGameFacade.getFinaleFeeds(pNickname);
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);

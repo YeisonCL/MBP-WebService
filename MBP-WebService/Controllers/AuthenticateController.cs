@@ -75,10 +75,11 @@ namespace MBP_WebService.Controllers
                     return _request;
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                //JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError())
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
+                _request.Content = new StringContent(ex.Message, Encoding.UTF8, "text/plain");
                 _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
