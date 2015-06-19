@@ -30,7 +30,7 @@ namespace MBP_WebService
             config.Routes.MapHttpRoute(
                 name: "GetShipCatalog",
                 routeTemplate: "onlinegame/shipcatalog",
-                defaults: new { controller = "getonlinegameshipcatalog" }
+                defaults: new { controller = "shipcatalog", action = "getonlinegameshipcatalog" }
             );
 
             config.Routes.MapHttpRoute(
