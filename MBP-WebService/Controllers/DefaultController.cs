@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MBP_Logic.Interface.FacadeInterface;
+using MBP_Logic.Manager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -16,6 +18,8 @@ namespace MBP_WebService.Controllers
         {
             try
             {
+                IOnlineGameFacade onlineGameFacade = new OnlineGameManager();
+                onlineGameFacade.startMBP();
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                 _request.Content = new StringContent("¡Bienvenido a MyBattlePong!", Encoding.UTF8, "text/plain");
                 _request.Headers.Add("Access-Control-Allow-Origin", "*");
