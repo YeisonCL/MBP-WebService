@@ -17,20 +17,20 @@ namespace MBP_WebService
 
             config.Routes.MapHttpRoute(
                 name: "AuthenticationLogin",
-                routeTemplate: "authenticate/login",
+                routeTemplate: "onlinegame/authenticate/login",
                 defaults: new { controller = "authenticate"}
             );
 
             config.Routes.MapHttpRoute(
                 name: "AuthenticationLogout",
-                routeTemplate: "authenticate/logout",
+                routeTemplate: "onlinegame/authenticate/logout",
                 defaults: new { controller = "authenticate" }
             );
 
             config.Routes.MapHttpRoute(
                 name: "GetShipCatalog",
-                routeTemplate: "shipcatalog",
-                defaults: new { controller = "shipcatalog" }
+                routeTemplate: "onlinegame/shipcatalog",
+                defaults: new { controller = "getonlinegameshipcatalog" }
             );
 
             config.Routes.MapHttpRoute(
@@ -77,92 +77,140 @@ namespace MBP_WebService
 
             config.Routes.MapHttpRoute(
                 name: "ChatNewMessage",
-                routeTemplate: "chat/newmessage",
+                routeTemplate: "onlinegame/chat/newmessage",
                 defaults: new { controller = "chat", action = "postnewmessage" }
             );
 
             config.Routes.MapHttpRoute(
-                name: "MakeShot",
-                routeTemplate: "shot/makeshot",
-                defaults: new { controller = "shot", action = "postmakeshot" }
+                name: "OnlineMakeShot",
+                routeTemplate: "onlinegame/shot/makeshot",
+                defaults: new { controller = "shotonline", action = "postmakeshot" }
             );
 
             config.Routes.MapHttpRoute(
                 name: "ExtraShotAbility",
-                routeTemplate: "ability/extrashot",
+                routeTemplate: "onlinegame/ability/extrashot",
                 defaults: new { controller = "abilities", action = "postextrashotactivate" }
             );
 
             config.Routes.MapHttpRoute(
                 name: "ThreeExtraShotAbility",
-                routeTemplate: "ability/threeextrashot",
+                routeTemplate: "onlinegame/ability/threeextrashot",
                 defaults: new { controller = "abilities", action = "postthreeextrashotactivate" }
             );
 
             config.Routes.MapHttpRoute(
                 name: "ExtraTurnShotAbility",
-                routeTemplate: "ability/extraturnshot",
+                routeTemplate: "onlinegame/ability/extraturnshot",
                 defaults: new { controller = "abilities", action = "postextraturnshotactivate" }
             );
 
             config.Routes.MapHttpRoute(
                 name: "AntiShieldAbility",
-                routeTemplate: "ability/antishield",
+                routeTemplate: "onlinegame/ability/antishield",
                 defaults: new { controller = "abilities", action = "postantishieldactivate" }
             );
 
             config.Routes.MapHttpRoute(
                 name: "BombAbility",
-                routeTemplate: "ability/bomb",
+                routeTemplate: "onlinegame/ability/bomb",
                 defaults: new { controller = "abilities", action = "postbombactivate" }
             );
 
             config.Routes.MapHttpRoute(
                 name: "LifeGuardAbility",
-                routeTemplate: "ability/lifeguard",
+                routeTemplate: "onlinegame/ability/lifeguard",
                 defaults: new { controller = "abilities", action = "postlifeguardactivate" }
             );
 
             config.Routes.MapHttpRoute(
                 name: "OnePlusVerticalAbility",
-                routeTemplate: "ability/oneplusvertical",
+                routeTemplate: "onlinegame/ability/oneplusvertical",
                 defaults: new { controller = "abilities", action = "postoneplusverticalactivate" }
             );
 
             config.Routes.MapHttpRoute(
                 name: "OnePlusHorizontalAbility",
-                routeTemplate: "ability/oneplushorizontal",
+                routeTemplate: "onlinegame/ability/oneplushorizontal",
                 defaults: new { controller = "abilities", action = "postoneplushorizontalactivate" }
             );
 
             config.Routes.MapHttpRoute(
                 name: "SpyAbility",
-                routeTemplate: "ability/spy",
+                routeTemplate: "onlinegame/ability/spy",
                 defaults: new { controller = "abilities", action = "postspyactivate" }
             );
 
             config.Routes.MapHttpRoute(
                 name: "ShieldAbility",
-                routeTemplate: "ability/shield",
+                routeTemplate: "onlinegame/ability/shield",
                 defaults: new { controller = "abilities", action = "postshieldactivate" }
             );
 
             config.Routes.MapHttpRoute(
                 name: "GameAbilities",
-                routeTemplate: "ability/game",
+                routeTemplate: "onlinegame/ability/game",
                 defaults: new { controller = "abilities", action = "getgameabilities" }
             );
 
             config.Routes.MapHttpRoute(
                 name: "GameUserStatistics",
-                routeTemplate: "gameuser/statistics",
+                routeTemplate: "onlinegame/gameuser/statistics",
                 defaults: new { controller = "gameuser", action = "getstatisticsuser" }
             );
 
             config.Routes.MapHttpRoute(
                 name: "GameFullUserStatistics",
-                routeTemplate: "gameuser/fullstatistics",
+                routeTemplate: "onlinegame/gameuser/fullstatistics",
                 defaults: new { controller = "gameuser", action = "getfullstatisticsuser" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "LiveGameShipCatalog",
+                routeTemplate: "livegame/shipcatalog",
+                defaults: new { controller = "shipcatalog", action = "getlivegameshipcatalog" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "TerminalKeyDevice",
+                routeTemplate: "livegame/terminal/key",
+                defaults: new { controller = "terminal", action = "postaddterminalkey" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "ValidateTerminalKeyDevice",
+                routeTemplate: "livegame/terminal/key/validate",
+                defaults: new { controller = "terminal", action = "postterminalkeyvalidate" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "NewLiveGame",
+                routeTemplate: "livegame/newlivegame",
+                defaults: new { controller = "livegame", action = "postnewlivegame" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "LiveGameTurnChange",
+                routeTemplate: "livegame/turnchange",
+                defaults: new { controller = "livegame", action = "postmaketurnchange" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "LiveMakeShot",
+                routeTemplate: "livegame/shot/makeshot",
+                defaults: new { controller = "shotlive", action = "postmakeshot" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "LiveShotFeeds",
+                routeTemplate: "livegame/shot/feeds",
+                defaults: new { controller = "shotlive", action = "getliveshotsfeed" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "FinaleLiveGameFeeds",
+                routeTemplate: "livegame/finalegamefeeds",
+                defaults: new { controller = "livegame", action = "getfinalegamefeeds" }
             );
         }
     }

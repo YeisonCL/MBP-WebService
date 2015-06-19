@@ -1,8 +1,5 @@
-﻿using MBP_Cross.DTO.DatabaseDTO;
-using MBP_Cross.DTO.ProtocolDTO;
+﻿using MBP_Cross.DTO.ProtocolDTO;
 using MBP_Logic.Comunication;
-using MBP_Logic.Interface.FacadeInterface;
-using MBP_Logic.Manager;
 using MBP_WebService.Models.Errors;
 using MBP_WebService.Models.Generals;
 using MBP_WebService.Models.JsonSerialize;
@@ -19,32 +16,23 @@ using System.Web.Security;
 
 namespace MBP_WebService.Controllers
 {
-    public class ShipCatalogController : ApiController
+    public class ShotLiveController : ApiController
     {
-        //GET /shipcatalog
-        //Obtiene el ship catalog de la base
+        //POST livegame/shot/makeshot
+        //Realizar un disparo
         [Authorize]
-        public HttpResponseMessage GetOnlineGameShipCatalog()
+        public HttpResponseMessage PostMakeShot()
         {
             try
             {
-                IOnlineGameFacade onlineGameFacade = new OnlineGameManager();
-                FormsAuthenticationTicket authCookie = FormsAuthentication.Decrypt(Request.Headers.GetCookies(".ASPXAUTH").First().Cookies.First().Value);
-                if (ExtractorValues.getRoleType(authCookie.Name) == 0)
-                {
-                    ResponseObject<IList<ShipDTO>> shipCatalog = onlineGameFacade.getShipCatalog();
-                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(shipCatalog), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
-                    return _request;
-                }
-                else
-                {
-                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
-                    return _request;
-                }
+                ILiveGameFacade liveGameFacade = new LiveGameManager();
+                string datosPost = Request.Content.ReadAsStringAsync().Result;
+                liveGameFacade.makeShot(Convert.ToInt32(datosPost.Split(':').ElementAt(0)), datosPost.Split(':').ElementAt(1));
+
+                HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                _request.Content = new StringContent("", Encoding.UTF8, "text/plain");
+                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                return _request;
             }
             catch
             {
@@ -55,10 +43,10 @@ namespace MBP_WebService.Controllers
             }
         }
 
-        //GET livegame/shipcatalog
-        //Obtiene el ship catalog de la base
+        //GET livegame/shot/feeds
+        //Obtiene los feeds de los disparos en vivo
         [Authorize]
-        public HttpResponseMessage GetLiveGameShipCatalog()
+        public HttpResponseMessage GetLiveShotsFeed()
         {
             try
             {
@@ -66,9 +54,9 @@ namespace MBP_WebService.Controllers
                 FormsAuthenticationTicket authCookie = FormsAuthentication.Decrypt(Request.Headers.GetCookies(".ASPXAUTH").First().Cookies.First().Value);
                 if (ExtractorValues.getRoleType(authCookie.Name) == 1)
                 {
-                    ResponseObject<ShipCatalogDTO> shipCatalog = liveGameFacade.getLiveShipCatalog();
+                    ResponseObject<IList<ShotFeedDTO>> shotsFeed = liveGameFacade.getShotsFeed(ExtractorValues.getNickname(authCookie.Name));
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(shipCatalog), Encoding.UTF8, "text/plain");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(shotsFeed), Encoding.UTF8, "text/plain");
                     _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }

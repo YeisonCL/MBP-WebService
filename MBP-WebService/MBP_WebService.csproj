@@ -45,6 +45,9 @@
     <Reference Include="MBP-Logic">
       <HintPath>..\..\MBP-Logic\MBP-Logic\bin\Debug\MBP-Logic.dll</HintPath>
     </Reference>
+    <Reference Include="MBPL-Logic">
+      <HintPath>..\..\MBPL-Logic\MBPL-Logic\bin\Debug\MBPL-Logic.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -119,9 +122,12 @@
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\GameUserController.cs" />
+    <Compile Include="Controllers\LiveGameController.cs" />
     <Compile Include="Controllers\OnlineGameController.cs" />
     <Compile Include="Controllers\ShipCatalogController.cs" />
-    <Compile Include="Controllers\ShotController.cs" />
+    <Compile Include="Controllers\ShotLiveController.cs" />
+    <Compile Include="Controllers\ShotOnlineController.cs" />
+    <Compile Include="Controllers\TerminalController.cs" />
     <Compile Include="Models\Errors\DefaultErrors.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -166,7 +172,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55908</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55908/</IISUrl>
+          <IISUrl>http://192.168.100.25:55908/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

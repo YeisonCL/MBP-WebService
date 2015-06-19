@@ -188,7 +188,7 @@ namespace MBP_WebService.Controllers
             }
         }
 
-        //POST /onlinegame/joinonlinegame
+        //POST /onlinegame/newonlinegame
         //Crea un nuevo juego online
         [Authorize]
         public HttpResponseMessage PostNewOnlineGame()
