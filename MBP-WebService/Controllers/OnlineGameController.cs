@@ -202,7 +202,7 @@ namespace MBP_WebService.Controllers
                     string datosPost = Request.Content.ReadAsStringAsync().Result;
                     DataGameDTO dataGame = JSONSerialize.deserealizeJson<DataGameDTO>(datosPost);
                     dataGame.setNickname(ExtractorValues.getNickname(authCookie.Name));
-                    ResponseObject<IList<ShipDTO>> newOnlineGameCreated = onlineGameFacade.newOnlineGame(dataGame);
+                    ResponseObject<string> newOnlineGameCreated = onlineGameFacade.newOnlineGame(dataGame);
 
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(newOnlineGameCreated), Encoding.UTF8, "text/plain");
@@ -240,7 +240,7 @@ namespace MBP_WebService.Controllers
                     string datosPost = Request.Content.ReadAsStringAsync().Result;
                     JoinGameDTO joinGameData = JSONSerialize.deserealizeJson<JoinGameDTO>(datosPost);
                     joinGameData.setCreatorNickname(ExtractorValues.getNickname(authCookie.Name));
-                    ResponseObject<IList<ShipDTO>> joinOnlineGameData = onlineGameFacade.joinOnlineGame(joinGameData);
+                    ResponseObject<string> joinOnlineGameData = onlineGameFacade.joinOnlineGame(joinGameData);
 
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(joinOnlineGameData), Encoding.UTF8, "text/plain");

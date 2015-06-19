@@ -119,7 +119,7 @@ namespace MBP_WebService
 
             config.Routes.MapHttpRoute(
                 name: "LifeGuardAbility",
-                routeTemplate: "onlinegame/ability/lifeguard",
+                routeTemplate: "onlinegame/ability/lifesaver",
                 defaults: new { controller = "abilities", action = "postlifeguardactivate" }
             );
 
