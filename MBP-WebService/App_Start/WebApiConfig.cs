@@ -184,7 +184,7 @@ namespace MBP_WebService
 
             config.Routes.MapHttpRoute(
                 name: "NewAdminUser",
-                routeTemplate: "onlinegame/adminuser/new",
+                routeTemplate: "onlinegame/administratoruser/new",
                 defaults: new { controller = "administratoruser", action = "postnewadministratoruser" }
             );
 
