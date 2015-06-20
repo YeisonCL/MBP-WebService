@@ -1,4 +1,5 @@
-﻿using MBP_Cross.DTO.ProtocolDTO;
+﻿using MBP_Cross.DTO.DatabaseDTO;
+using MBP_Cross.DTO.ProtocolDTO;
 using MBP_Logic.Comunication;
 using MBP_Logic.Interface.FacadeInterface;
 using MBP_Logic.Manager;
@@ -68,6 +69,43 @@ namespace MBP_WebService.Controllers
                     ResponseObject<FullStatisticsGameDTO> fullStatisticsUser = onlineGameFacade.getFullStatisticUser(ExtractorValues.getNickname(authCookie.Name));
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(fullStatisticsUser), Encoding.UTF8, "text/plain");
+                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    return _request;
+                }
+                else
+                {
+                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
+                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    return _request;
+                }
+            }
+            catch
+            {
+                HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
+                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                return _request;
+            }
+        }
+
+        //POST onlinegame/gameuser/new
+        //Crea un nuevo game user en la base de datos
+        [Authorize]
+        public HttpResponseMessage PostNewGameUser()
+        {
+            try
+            {
+                IOnlineGameFacade onlineGameFacade = new OnlineGameManager();
+                FormsAuthenticationTicket authCookie = FormsAuthentication.Decrypt(Request.Headers.GetCookies(".ASPXAUTH").First().Cookies.First().Value);
+                if (ExtractorValues.getRoleType(authCookie.Name) == 0)
+                {
+                    string datosPost = Request.Content.ReadAsStringAsync().Result;
+                    GameUserDTO gameUser = JSONSerialize.deserealizeJson<GameUserDTO>(datosPost);
+                    ResponseObject<string> gameUserResponse = onlineGameFacade.createNewGameUser(gameUser);
+
+                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(gameUserResponse), Encoding.UTF8, "text/plain");
                     _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }

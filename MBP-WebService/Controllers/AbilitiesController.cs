@@ -34,14 +34,12 @@ namespace MBP_WebService.Controllers
                     ResponseObject<IList<GameAbilityFeedDTO>> gameAbilities = onlineGameFacade.getGameAbilities(ExtractorValues.getNickname(authCookie.Name));
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(gameAbilities), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
             }
@@ -49,7 +47,6 @@ namespace MBP_WebService.Controllers
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                 _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
         }
@@ -66,25 +63,21 @@ namespace MBP_WebService.Controllers
                 if (ExtractorValues.getRoleType(authCookie.Name) == 0)
                 {
                     ResponseObject<string> extraShotActivate = onlineGameFacade.extraShotsActivate(ExtractorValues.getNickname(authCookie.Name));
-
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(extraShotActivate), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(extraShotActivate), Encoding.UTF8, "text/plain");             
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");                 
                     return _request;
                 }
             }
             catch
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");               
                 return _request;
             }
         }
@@ -103,23 +96,20 @@ namespace MBP_WebService.Controllers
                     ResponseObject<string> threeExtraShotActivate = onlineGameFacade.threeExtraShotActivate(ExtractorValues.getNickname(authCookie.Name));
 
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(threeExtraShotActivate), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(threeExtraShotActivate), Encoding.UTF8, "text/plain");                
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");                   
                     return _request;
                 }
             }
             catch
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");               
                 return _request;
             }
         }
@@ -138,23 +128,20 @@ namespace MBP_WebService.Controllers
                     ResponseObject<string> extraTurnShotActivate = onlineGameFacade.extraTurnShotActivate(ExtractorValues.getNickname(authCookie.Name));
 
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(extraTurnShotActivate), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(extraTurnShotActivate), Encoding.UTF8, "text/plain");                   
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");                    
                     return _request;
                 }
             }
             catch
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");                
                 return _request;
             }
         }
@@ -173,23 +160,20 @@ namespace MBP_WebService.Controllers
                     ResponseObject<string> antiShieldActivate = onlineGameFacade.antiShieldActivate(ExtractorValues.getNickname(authCookie.Name));
 
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(antiShieldActivate), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(antiShieldActivate), Encoding.UTF8, "text/plain");                    
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");                   
                     return _request;
                 }
             }
             catch
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");              
                 return _request;
             }
         }
@@ -208,23 +192,20 @@ namespace MBP_WebService.Controllers
                     ResponseObject<string> bombActivate = onlineGameFacade.bombActivate(ExtractorValues.getNickname(authCookie.Name));
 
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(bombActivate), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(bombActivate), Encoding.UTF8, "text/plain");                    
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");                    
                     return _request;
                 }
             }
             catch
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");               
                 return _request;
             }
         }
@@ -245,23 +226,20 @@ namespace MBP_WebService.Controllers
                     ResponseObject<string> shipPositionResponse = onlineGameFacade.lifeGuardActivate(ExtractorValues.getNickname(authCookie.Name), shipPosition.getColumnPosition(), shipPosition.getRawPosition());
 
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(shipPositionResponse), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(shipPositionResponse), Encoding.UTF8, "text/plain");                   
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");                   
                     return _request;
                 }
             }
             catch
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");              
                 return _request;
             }
         }
@@ -281,23 +259,20 @@ namespace MBP_WebService.Controllers
                     ResponseObject<string> onePlusVertical = onlineGameFacade.onePlusVerticalActivate(ExtractorValues.getNickname(authCookie.Name), datosPost);
 
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(onePlusVertical), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(onePlusVertical), Encoding.UTF8, "text/plain");                   
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");                   
                     return _request;
                 }
             }
             catch
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");               
                 return _request;
             }
         }
@@ -317,23 +292,20 @@ namespace MBP_WebService.Controllers
                     ResponseObject<string> onePlusHorizontal = onlineGameFacade.onePlusHorizontalActivate(ExtractorValues.getNickname(authCookie.Name), datosPost);
 
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(onePlusHorizontal), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(onePlusHorizontal), Encoding.UTF8, "text/plain");                   
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");                  
                     return _request;
                 }
             }
             catch
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");                
                 return _request;
             }
         }
@@ -352,23 +324,20 @@ namespace MBP_WebService.Controllers
                     ResponseObject<SpyDTO> spyActivate = onlineGameFacade.spyActivate(ExtractorValues.getNickname(authCookie.Name));
 
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(spyActivate), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(spyActivate), Encoding.UTF8, "text/plain");                   
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");                  
                     return _request;
                 }
             }
             catch
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");              
                 return _request;
             }
         }
@@ -389,23 +358,20 @@ namespace MBP_WebService.Controllers
                     ResponseObject<IList<ShipPositionDTO>> shieldActivate = onlineGameFacade.shieldActivate(ExtractorValues.getNickname(authCookie.Name), shipPosition.getColumnPosition(), shipPosition.getRawPosition());
 
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(shieldActivate), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(shieldActivate), Encoding.UTF8, "text/plain");                  
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");                   
                     return _request;
                 }
             }
             catch
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");               
                 return _request;
             }
         }
