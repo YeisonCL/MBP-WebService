@@ -39,8 +39,14 @@ namespace MBP_WebService
             );
 
             config.Routes.MapHttpRoute(
+                name: "GetGameData",
+                routeTemplate: "onlinegame/gamedata",
+                defaults: new { controller = "onlinegame", action = "getonlinegamedata" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "NewOnlineGame",
-                routeTemplate: "onlinegame/newonlinegame",
+                routeTemplate: "onlinegame/createonlinegame",
                 defaults: new { controller = "onlinegame", action = "postnewonlinegame" }
             );
 

@@ -1,4 +1,5 @@
-﻿using MBP_Cross.DTO.ProtocolDTO;
+﻿using MBP_Cross.DTO.DatabaseDTO;
+using MBP_Cross.DTO.ProtocolDTO;
 using MBP_Logic.Comunication;
 using MBP_Logic.Interface.FacadeInterface;
 using MBP_Logic.Manager;
@@ -14,6 +15,7 @@ using System.Text;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Security;
+using System.Windows.Forms;
 
 namespace MBP_WebService.Controllers
 {
@@ -47,6 +49,38 @@ namespace MBP_WebService.Controllers
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                 _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
+                return _request;
+            }
+        }
+
+        //GET /onlinegame/gamedata
+        //Obtiene los datos del juuego
+        [Authorize]
+        public HttpResponseMessage GetOnlineGameData()
+        {
+            try
+            {
+                IOnlineGameFacade onlineGameFacade = new OnlineGameManager();
+                FormsAuthenticationTicket authCookie = FormsAuthentication.Decrypt(Request.Headers.GetCookies(".ASPXAUTH").First().Cookies.First().Value);
+                if (ExtractorValues.getRoleType(authCookie.Name) == 0)
+                {
+                    ResponseObject<DataGameDTO> dataGame = onlineGameFacade.getDataGame(ExtractorValues.getNickname(authCookie.Name));
+                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(dataGame), Encoding.UTF8, "text/plain");
+                    return _request;
+                }
+                else
+                {
+                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
+                    return _request;
+                }
+            }
+            catch(Exception ex)
+            {
+                //JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError())
+                HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                _request.Content = new StringContent(ex.Message + "  " + ex.StackTrace , Encoding.UTF8, "text/plain");
                 return _request;
             }
         }
@@ -187,6 +221,7 @@ namespace MBP_WebService.Controllers
                 if(ExtractorValues.getRoleType(authCookie.Name) == 0)
                 {
                     string datosPost = Request.Content.ReadAsStringAsync().Result;
+
                     DataGameDTO dataGame = JSONSerialize.deserealizeJson<DataGameDTO>(datosPost);
                     dataGame.setNickname(ExtractorValues.getNickname(authCookie.Name));
                     ResponseObject<string> newOnlineGameCreated = onlineGameFacade.newOnlineGame(dataGame);

@@ -85,29 +85,18 @@ namespace MBP_WebService.Controllers
 
         //POST onlinegame/gameuser/new
         //Crea un nuevo game user en la base de datos
-        [Authorize]
         public HttpResponseMessage PostNewGameUser()
         {
             try
             {
                 IOnlineGameFacade onlineGameFacade = new OnlineGameManager();
-                FormsAuthenticationTicket authCookie = FormsAuthentication.Decrypt(Request.Headers.GetCookies(".ASPXAUTH").First().Cookies.First().Value);
-                if (ExtractorValues.getRoleType(authCookie.Name) == 0)
-                {
-                    string datosPost = Request.Content.ReadAsStringAsync().Result;
-                    GameUserDTO gameUser = JSONSerialize.deserealizeJson<GameUserDTO>(datosPost);
-                    ResponseObject<string> gameUserResponse = onlineGameFacade.createNewGameUser(gameUser);
+                string datosPost = Request.Content.ReadAsStringAsync().Result;
+                GameUserDTO gameUser = JSONSerialize.deserealizeJson<GameUserDTO>(datosPost);
+                ResponseObject<string> gameUserResponse = onlineGameFacade.createNewGameUser(gameUser);
 
-                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(gameUserResponse), Encoding.UTF8, "text/plain");
-                    return _request;
-                }
-                else
-                {
-                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    return _request;
-                }
+                HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(gameUserResponse), Encoding.UTF8, "text/plain");
+                return _request;
             }
             catch
             {

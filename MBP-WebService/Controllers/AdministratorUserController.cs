@@ -22,29 +22,18 @@ namespace MBP_WebService.Controllers
     {
         //POST onlinegame/moderatoruser/new
         //Crea un nuevo moderator user en la base de datos
-        [Authorize]
         public HttpResponseMessage PostNewAdministratorUser()
         {
             try
             {
                 IOnlineGameFacade onlineGameFacade = new OnlineGameManager();
-                FormsAuthenticationTicket authCookie = FormsAuthentication.Decrypt(Request.Headers.GetCookies(".ASPXAUTH").First().Cookies.First().Value);
-                if (ExtractorValues.getRoleType(authCookie.Name) == 1)
-                {
-                    string datosPost = Request.Content.ReadAsStringAsync().Result;
-                    AdminUserDTO adminData = JSONSerialize.deserealizeJson<AdminUserDTO>(datosPost);
-                    ResponseObject<string> administratorUserResponse = onlineGameFacade.createNewAdminUser(adminData);
+                string datosPost = Request.Content.ReadAsStringAsync().Result;
+                AdminUserDTO adminData = JSONSerialize.deserealizeJson<AdminUserDTO>(datosPost);
+                ResponseObject<string> administratorUserResponse = onlineGameFacade.createNewAdminUser(adminData);
 
-                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(administratorUserResponse), Encoding.UTF8, "text/plain");
-                    return _request;
-                }
-                else
-                {
-                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    return _request;
-                }
+                HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(administratorUserResponse), Encoding.UTF8, "text/plain");
+                return _request;
             }
             catch
             {
