@@ -35,10 +35,11 @@ namespace MBP_WebService.Controllers
                 _request.Content = new StringContent(JSONSerialize.serealizeJson(administratorUserResponse), Encoding.UTF8, "text/plain");
                 return _request;
             }
-            catch
+            catch(Exception ex)
             {
+                //JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError())
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
+                _request.Content = new StringContent(ex.Message + "  " + ex.StackTrace, Encoding.UTF8, "text/plain");
                 return _request;
             }
         }

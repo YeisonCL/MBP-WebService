@@ -76,11 +76,72 @@ namespace MBP_WebService.Controllers
                     return _request;
                 }
             }
-            catch(Exception ex)
+            catch
             {
-                //JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError())
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                _request.Content = new StringContent(ex.Message + "  " + ex.StackTrace , Encoding.UTF8, "text/plain");
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
+                return _request;
+            }
+        }
+
+        //GET onlinegame/opponent/nickname
+        //Obtiene el nickname del jugador oponente
+        [Authorize]
+        public HttpResponseMessage GetOpponentNickname()
+        {
+            try
+            {
+                IOnlineGameFacade onlineGameFacade = new OnlineGameManager();
+                FormsAuthenticationTicket authCookie = FormsAuthentication.Decrypt(Request.Headers.GetCookies(".ASPXAUTH").First().Cookies.First().Value);
+                if (ExtractorValues.getRoleType(authCookie.Name) == 0)
+                {
+                    ResponseObject<string> nickname = onlineGameFacade.getOpponentNickname(ExtractorValues.getNickname(authCookie.Name));
+                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(nickname), Encoding.UTF8, "text/plain");
+                    return _request;
+                }
+                else
+                {
+                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
+                    return _request;
+                }
+            }
+            catch
+            {
+                HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
+                return _request;
+            }
+        }
+
+        //GET onlinegame/player/photo
+        //Obtiene el nickname del jugador oponente
+        [Authorize]
+        public HttpResponseMessage GetPlayerPhoto(string pNickname)
+        {
+            try
+            {
+                IOnlineGameFacade onlineGameFacade = new OnlineGameManager();
+                FormsAuthenticationTicket authCookie = FormsAuthentication.Decrypt(Request.Headers.GetCookies(".ASPXAUTH").First().Cookies.First().Value);
+                if (ExtractorValues.getRoleType(authCookie.Name) == 0)
+                {
+                    ResponseObject<string> playerPhoto = onlineGameFacade.getPhoto(pNickname);
+                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(playerPhoto), Encoding.UTF8, "text/plain");
+                    return _request;
+                }
+                else
+                {
+                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
+                    return _request;
+                }
+            }
+            catch
+            {
+                HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
                 return _request;
             }
         }

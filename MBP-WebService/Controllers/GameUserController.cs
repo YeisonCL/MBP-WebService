@@ -52,6 +52,37 @@ namespace MBP_WebService.Controllers
             }
         }
 
+        //GET onlinegame/gameuser
+        //Obtiene las estadisticas de un game user
+        [Authorize]
+        public HttpResponseMessage GetGameUser()
+        {
+            try
+            {
+                IOnlineGameFacade onlineGameFacade = new OnlineGameManager();
+                FormsAuthenticationTicket authCookie = FormsAuthentication.Decrypt(Request.Headers.GetCookies(".ASPXAUTH").First().Cookies.First().Value);
+                if (ExtractorValues.getRoleType(authCookie.Name) == 0)
+                {
+                    ResponseObject<GameUserDTO> gameUser = onlineGameFacade.getGameUser(ExtractorValues.getNickname(authCookie.Name));
+                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(gameUser), Encoding.UTF8, "text/plain");
+                    return _request;
+                }
+                else
+                {
+                    HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                    _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
+                    return _request;
+                }
+            }
+            catch
+            {
+                HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
+                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
+                return _request;
+            }
+        }
+
         //GET gameuser/fullstatistics
         //Obtiene las estadisticas completas de un game user
         [Authorize]

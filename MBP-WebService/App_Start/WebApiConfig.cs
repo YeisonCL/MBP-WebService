@@ -177,6 +177,24 @@ namespace MBP_WebService
             );
 
             config.Routes.MapHttpRoute(
+                name: "OpponentNickname",
+                routeTemplate: "onlinegame/opponent/nickname",
+                defaults: new { controller = "onlinegame", action = "getopponentnickname" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "GamePlayerPhoto",
+                routeTemplate: "onlinegame/player/photo",
+                defaults: new { controller = "onlinegame", action = "getplayerphoto" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "GetGameUser",
+                routeTemplate: "onlinegame/gameuser",
+                defaults: new { controller = "gameuser", action = "getgameuser" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "GameFullUserStatistics",
                 routeTemplate: "onlinegame/gameuser/fullstatistics",
                 defaults: new { controller = "gameuser", action = "getfullstatisticsuser" }
