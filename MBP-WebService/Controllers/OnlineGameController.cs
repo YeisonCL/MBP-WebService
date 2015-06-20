@@ -169,10 +169,11 @@ namespace MBP_WebService.Controllers
                     return _request;
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                //JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError())
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
+                _request.Content = new StringContent(ex.Message + "  " + ex.StackTrace, Encoding.UTF8, "text/plain");
                 return _request;
             }
         }
@@ -319,7 +320,7 @@ namespace MBP_WebService.Controllers
                 {
                     string datosPost = Request.Content.ReadAsStringAsync().Result;
                     JoinGameDTO joinGameData = JSONSerialize.deserealizeJson<JoinGameDTO>(datosPost);
-                    joinGameData.setCreatorNickname(ExtractorValues.getNickname(authCookie.Name));
+                    joinGameData.setOpponentNickname(ExtractorValues.getNickname(authCookie.Name));
                     ResponseObject<string> joinOnlineGameData = onlineGameFacade.joinOnlineGame(joinGameData);
 
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
@@ -333,10 +334,11 @@ namespace MBP_WebService.Controllers
                     return _request;
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                //JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError())
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
-                _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
+                _request.Content = new StringContent(ex.Message + "   " + ex.StackTrace, Encoding.UTF8, "text/plain");
                 return _request;
             }
         }
