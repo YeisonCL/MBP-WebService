@@ -12,11 +12,13 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Security;
 using System.Windows.Forms;
 
 namespace MBP_WebService.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*", SupportsCredentials = true)]
     public class AuthenticateController : ApiController
     {
 
@@ -65,7 +67,7 @@ namespace MBP_WebService.Controllers
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Headers.AddCookies(new CookieHeaderValue[] { exitCookie });
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(validationUser), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
+                    //_request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
                 else 
