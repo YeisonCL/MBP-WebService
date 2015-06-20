@@ -24,14 +24,12 @@ namespace MBP_WebService.Controllers
                 onlineGameFacade.startMBP();
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                 _request.Content = new StringContent("¡Bienvenido a MyBattlePong!", Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
             catch
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.Conflict);
                 _request.Content = new StringContent("¡Se ha producido un error procesando su petición!", Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
         }

@@ -38,14 +38,12 @@ namespace MBP_WebService.Controllers
                     ResponseObject<IList<ShipDTO>> shipCatalog = onlineGameFacade.getShipCatalog();
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(shipCatalog), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
             }
@@ -53,7 +51,6 @@ namespace MBP_WebService.Controllers
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                 _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
         }
@@ -72,14 +69,12 @@ namespace MBP_WebService.Controllers
                     ResponseObject<ShipCatalogDTO> shipCatalog = liveGameFacade.getLiveShipCatalog();
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(shipCatalog), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
             }
@@ -87,7 +82,6 @@ namespace MBP_WebService.Controllers
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                 _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
         }

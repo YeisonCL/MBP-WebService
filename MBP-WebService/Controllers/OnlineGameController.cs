@@ -34,14 +34,12 @@ namespace MBP_WebService.Controllers
                     ResponseObject<IList<WaitingGameDTO>> waitingGames = onlineGameFacade.getOnlineWaitingGames();
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(waitingGames), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
             }
@@ -49,7 +47,6 @@ namespace MBP_WebService.Controllers
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                 _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
         }
@@ -68,14 +65,12 @@ namespace MBP_WebService.Controllers
                     ResponseObject<IList<ShipDTO>> selectOnlineGame = onlineGameFacade.selectOnlineGame(pCreatorNickname);
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(selectOnlineGame), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
             }
@@ -83,7 +78,6 @@ namespace MBP_WebService.Controllers
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                 _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
         }
@@ -102,14 +96,12 @@ namespace MBP_WebService.Controllers
                     ResponseObject<bool> alreadyStarted = onlineGameFacade.alreadyStarted(ExtractorValues.getNickname(authCookie.Name));
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(alreadyStarted), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
             }
@@ -117,7 +109,6 @@ namespace MBP_WebService.Controllers
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                 _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
         }
@@ -136,14 +127,12 @@ namespace MBP_WebService.Controllers
                     ResponseObject<GameFeedDTO> gameFeed = onlineGameFacade.getGameFeed(ExtractorValues.getNickname(authCookie.Name));
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(gameFeed), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
             }
@@ -151,7 +140,6 @@ namespace MBP_WebService.Controllers
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                 _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
         }
@@ -170,14 +158,12 @@ namespace MBP_WebService.Controllers
                     ResponseObject<FinaleFeedsDTO> finaleGameFeed = onlineGameFacade.getFinaleFeeds(ExtractorValues.getNickname(authCookie.Name));
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(finaleGameFeed), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
             }
@@ -185,7 +171,6 @@ namespace MBP_WebService.Controllers
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                 _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
         }
@@ -208,14 +193,12 @@ namespace MBP_WebService.Controllers
 
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(newOnlineGameCreated), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
             }
@@ -223,7 +206,6 @@ namespace MBP_WebService.Controllers
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                 _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
         }
@@ -246,14 +228,12 @@ namespace MBP_WebService.Controllers
 
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(joinOnlineGameData), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
                 else
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getNotAllowed()), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
             }
@@ -261,7 +241,6 @@ namespace MBP_WebService.Controllers
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                 _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
         }

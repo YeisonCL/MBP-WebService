@@ -31,14 +31,12 @@ namespace MBP_WebService.Controllers
                 FormsAuthentication.SignOut();
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                 _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.notError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
             catch
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                 _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
         }
@@ -67,14 +65,12 @@ namespace MBP_WebService.Controllers
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Headers.AddCookies(new CookieHeaderValue[] { exitCookie });
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(validationUser), Encoding.UTF8, "text/plain");
-                    //_request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
                 else 
                 {
                     HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                     _request.Content = new StringContent(JSONSerialize.serealizeJson(validationUser), Encoding.UTF8, "text/plain");
-                    _request.Headers.Add("Access-Control-Allow-Origin", "*");
                     return _request;
                 }
             }
@@ -82,7 +78,6 @@ namespace MBP_WebService.Controllers
             {
                 HttpResponseMessage _request = new HttpResponseMessage(HttpStatusCode.OK);
                 _request.Content = new StringContent(JSONSerialize.serealizeJson(DefaultErrors.getInternalDefaultError()), Encoding.UTF8, "text/plain");
-                _request.Headers.Add("Access-Control-Allow-Origin", "*");
                 return _request;
             }
         }
